@@ -60,7 +60,7 @@
                                 <td><strong>{{ $order->order_number }}</strong></td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img src="{{ $order->product->image ? asset('storage/' . $order->product->image) : 'https://via.placeholder.com/50x50' }}" 
+                                        <img src="{{ $order->product->category && $order->product->category->icon ? asset('storage/' . $order->product->category->icon) : 'https://via.placeholder.com/50x50' }}" 
                                              alt="{{ $order->product->name }}" 
                                              class="rounded me-2" 
                                              style="width: 50px; height: 50px; object-fit: cover;">

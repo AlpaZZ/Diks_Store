@@ -55,7 +55,7 @@
                 <div class="card-body">
                     <!-- Product -->
                     <div class="d-flex mb-4">
-                        <img src="{{ $order->product->image ? asset('storage/' . $order->product->image) : 'https://via.placeholder.com/100x100' }}" 
+                        <img src="{{ $order->product->category && $order->product->category->icon ? asset('storage/' . $order->product->category->icon) : 'https://via.placeholder.com/100x100' }}" 
                              alt="{{ $order->product->name }}" 
                              class="rounded me-3" 
                              style="width: 100px; height: 100px; object-fit: cover;">

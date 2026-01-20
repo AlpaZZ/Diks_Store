@@ -18,7 +18,7 @@
         <!-- Product Image -->
         <div class="col-lg-5 mb-4">
             <div class="card border-0 shadow-sm">
-                <img src="{{ $product->image ? asset('storage/' . $product->image) : 'https://via.placeholder.com/500x400?text=No+Image' }}" 
+                <img src="{{ $product->category && $product->category->icon ? asset('storage/' . $product->category->icon) : 'https://via.placeholder.com/500x400?text=No+Image' }}" 
                      class="card-img-top rounded" 
                      alt="{{ $product->name }}"
                      style="object-fit: cover; height: 400px;">
@@ -231,7 +231,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="d-flex mb-4">
-                        <img src="{{ $product->image ? asset('storage/' . $product->image) : 'https://via.placeholder.com/80x80?text=No+Image' }}" 
+                        <img src="{{ $product->category && $product->category->icon ? asset('storage/' . $product->category->icon) : 'https://via.placeholder.com/80x80?text=No+Image' }}" 
                              alt="{{ $product->name }}" 
                              class="rounded me-3" 
                              style="width: 80px; height: 80px; object-fit: cover;">

@@ -136,8 +136,8 @@
                     @foreach($products as $product)
                     <div class="col-md-6 col-lg-4">
                         <div class="card product-card h-100 border-0 shadow-sm">
-                            @if($product->image)
-                            <img src="{{ Storage::url($product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                            @if($category->icon)
+                            <img src="{{ Storage::url($category->icon) }}" class="card-img-top" alt="{{ $product->name }}">
                             @else
                             <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
                                 <i class="bi bi-controller text-white" style="font-size: 4rem;"></i>

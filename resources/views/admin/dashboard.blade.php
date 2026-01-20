@@ -131,7 +131,7 @@
             <div class="p-3">
                 @forelse($recentProducts as $product)
                 <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
-                    <img src="{{ $product->image ? asset('storage/' . $product->image) : 'https://via.placeholder.com/60x60?text=No+Image' }}" 
+                    <img src="{{ $product->category && $product->category->icon ? asset('storage/' . $product->category->icon) : 'https://via.placeholder.com/60x60?text=No+Image' }}" 
                          alt="{{ $product->name }}" 
                          class="rounded me-3" 
                          style="width: 50px; height: 50px; object-fit: cover;">

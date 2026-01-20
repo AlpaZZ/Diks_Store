@@ -140,7 +140,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="card product-card h-100">
                     <div class="position-relative">
-                        <img src="{{ $product->image ? Storage::url($product->image) : 'https://via.placeholder.com/300x200?text=No+Image' }}" 
+                        <img src="{{ $product->category && $product->category->icon ? Storage::url($product->category->icon) : 'https://via.placeholder.com/300x200?text=No+Image' }}" 
                              class="card-img-top" alt="{{ $product->name }}">
                         @if($product->hasDiscount())
                         <span class="badge-discount">-{{ $product->discount_percentage }}%</span>

@@ -49,8 +49,8 @@
             </div>
             <div class="card-body">
                 <div class="d-flex">
-                    @if($order->product->image)
-                        <img src="{{ asset('storage/' . $order->product->image) }}" 
+                    @if($order->product->category && $order->product->category->icon)
+                        <img src="{{ asset('storage/' . $order->product->category->icon) }}" 
                              alt="{{ $order->product->name }}" 
                              class="rounded me-3" 
                              style="width: 100px; height: 100px; object-fit: cover;">

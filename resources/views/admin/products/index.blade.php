@@ -67,8 +67,8 @@
                 @forelse($products as $product)
                 <tr>
                     <td>
-                        @if($product->image)
-                            <img src="{{ asset('storage/' . $product->image) }}" 
+                        @if($product->category && $product->category->icon)
+                            <img src="{{ asset('storage/' . $product->category->icon) }}" 
                                  alt="{{ $product->name }}" 
                                  class="rounded" 
                                  style="width: 60px; height: 60px; object-fit: cover;">

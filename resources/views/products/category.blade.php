@@ -48,7 +48,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="card product-card h-100">
                         <div class="position-relative">
-                            <img src="{{ $product->image ? asset('storage/' . $product->image) : 'https://via.placeholder.com/300x200?text=No+Image' }}" 
+                            <img src="{{ $product->category && $product->category->icon ? asset('storage/' . $product->category->icon) : 'https://via.placeholder.com/300x200?text=No+Image' }}" 
                                  class="card-img-top" alt="{{ $product->name }}">
                             @if($product->hasDiscount())
                                 <span class="badge-discount">-{{ $product->discount_percentage }}%</span>

@@ -1,59 +1,200 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🎮 DIKS STORE - Marketplace Jual Beli Akun & Top Up Game
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Diks Store** adalah aplikasi web marketplace untuk jual beli akun game dan top up game, dibangun menggunakan Laravel 11.
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📋 Fitur Utama
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 🛒 User
+- Registrasi & Login
+- Jual beli akun game
+- Top up game (Diamond, UC, dll)
+- Upload bukti pembayaran
+- Riwayat transaksi
+- Profile management
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 👨‍💼 Admin
+- Dashboard dengan statistik
+- Manajemen produk & kategori
+- Manajemen pesanan (akun & top up)
+- Manajemen pengguna
+- Export laporan (PDF & Excel)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🛠️ Persyaratan Sistem
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **PHP** >= 8.2
+- **Composer** >= 2.0
+- **MySQL** >= 5.7 atau **MariaDB** >= 10.3
+- **Node.js** >= 18 (untuk compile assets, opsional)
+- **NPM** >= 9 (opsional)
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🚀 Cara Instalasi
 
-### Premium Partners
+### Langkah 1: Extract dan Buka Terminal
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+cd Diks_Store
+```
 
-## Contributing
+### Langkah 2: Install Dependencies PHP
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+composer install
+```
 
-## Code of Conduct
+### Langkah 3: Copy File Environment
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+# Windows (Command Prompt)
+copy .env.example .env
 
-## Security Vulnerabilities
+# Windows (PowerShell)
+Copy-Item .env.example .env
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Linux/Mac
+cp .env.example .env
+```
 
-## License
+### Langkah 4: Generate Application Key
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan key:generate
+```
+
+### Langkah 5: Konfigurasi Database
+
+Buka file `.env` dan sesuaikan konfigurasi database:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=diks_store
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+> **Catatan:** Buat database `diks_store` terlebih dahulu di MySQL/phpMyAdmin
+
+### Langkah 6: Jalankan Migration & Seeder
+
+```bash
+php artisan migrate --seed
+```
+
+Perintah ini akan:
+- Membuat semua tabel yang diperlukan
+- Mengisi data sample (admin, kategori, produk, top up)
+
+### Langkah 7: Buat Storage Link
+
+```bash
+php artisan storage:link
+```
+
+### Langkah 8: Install Dependencies Frontend (Opsional)
+
+```bash
+npm install
+npm run build
+```
+
+### Langkah 9: Jalankan Server
+
+```bash
+php artisan serve
+```
+
+Aplikasi berjalan di: **http://localhost:8000**
+
+---
+
+## 🔐 Akun Default
+
+### Admin
+| Email | Password |
+|-------|----------|
+| raziq@diksstore.com | admin123 |
+| alfarizki@diksstore.com | admin123 |
+| yowan@diksstore.com | admin123 |
+| dimas@diksstore.com | admin123 |
+
+### User (Sample)
+| Email | Password |
+|-------|----------|
+| user@example.com | user123 |
+
+---
+
+## 📁 Struktur Folder Penting
+
+```
+Diks_Store/
+├── app/
+│   ├── Http/Controllers/     # Controller aplikasi
+│   └── Models/               # Model Eloquent
+├── database/
+│   ├── migrations/           # File migrasi database
+│   └── seeders/              # Data seeder
+├── resources/views/          # Blade templates
+├── routes/web.php            # Definisi routes
+├── public/                   # Assets publik
+└── storage/                  # File uploads
+```
+
+---
+
+## 🗄️ Struktur Database
+
+| Tabel | Deskripsi |
+|-------|-----------|
+| users | Data pengguna (admin & user) |
+| categories | Kategori game |
+| products | Akun game yang dijual |
+| orders | Pesanan jual beli akun |
+| topups | Paket top up game |
+| topup_orders | Pesanan top up game |
+
+---
+
+## ⚙️ Troubleshooting
+
+### Error: "Could not find driver"
+Pastikan extension MySQL di PHP sudah aktif:
+```ini
+; php.ini
+extension=pdo_mysql
+extension=mysqli
+```
+
+### Error: "SQLSTATE[HY000] [1049] Unknown database"
+Buat database terlebih dahulu:
+```sql
+CREATE DATABASE diks_store;
+```
+
+### Error: "The symlink function is disabled"
+Jalankan Command Prompt/Terminal sebagai **Administrator**, lalu:
+```bash
+php artisan storage:link
+```
+
+### Images tidak muncul
+Pastikan sudah menjalankan `php artisan storage:link`
+
+---
+
+## 📝 Catatan Tambahan
+
+1. Aplikasi menggunakan **Laravel 11** dengan PHP 8.2+
+2. Template menggunakan **Bootstrap 5** dengan custom styling
+3. Export PDF menggunakan **barryvdh/laravel-dompdf**
+4. Export Excel menggunakan format CSV (kompatibel dengan Microsoft Excel)
+
+---
+
+**© 2026 Diks Store - All Rights Reserved**
