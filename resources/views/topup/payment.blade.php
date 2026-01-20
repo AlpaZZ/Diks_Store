@@ -66,7 +66,7 @@
                             <i class="bi bi-gem text-white" style="font-size: 2.5rem;"></i>
                         </div>
                         @endif
-                        <div class="flex-grow-1">
+                        <div class="grow">
                             <h5>{{ $order->topup->category->name }}</h5>
                             <p class="text-primary fw-bold mb-1">
                                 {{ number_format($order->topup->amount) }} 

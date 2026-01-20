@@ -59,7 +59,7 @@
                              alt="{{ $order->product->name }}" 
                              class="rounded me-3" 
                              style="width: 100px; height: 100px; object-fit: cover;">
-                        <div class="flex-grow-1">
+                        <div class="grow">
                             <h5>{{ $order->product->name }}</h5>
                             <p class="text-muted mb-1">{{ $order->product->category->name }}</p>
                             @if($order->product->game_server || $order->product->game_level)
