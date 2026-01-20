@@ -10,9 +10,9 @@
             <div class="col-auto">
                 @if($category->icon)
                 <img src="{{ Storage::url($category->icon) }}" alt="{{ $category->name }}" 
-                     class="rounded-circle border border-3 border-white" style="width: 80px; height: 80px; object-fit: cover;">
+                     class="rounded-circle border-3 border-white" style="width: 80px; height: 80px; object-fit: cover;">
                 @else
-                <div class="rounded-circle d-flex align-items-center justify-content-center border border-3 border-white" 
+                <div class="rounded-circle d-flex align-items-center justify-content-center border-3 border-white" 
                      style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));">
                     <i class="bi bi-controller text-white" style="font-size: 2rem;"></i>
                 </div>
