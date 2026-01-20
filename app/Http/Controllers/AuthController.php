@@ -30,6 +30,14 @@ class AuthController extends Controller
 
         $remember = $request->has('remember');
 
+        // Check if user exists and is banned
+        $user = User::where('email', $credentials['email'])->first();
+        if ($user && $user->is_banned) {
+            return back()->withErrors([
+                'email' => 'Akun Anda telah dibanned. ' . ($user->ban_reason ? 'Alasan: ' . $user->ban_reason : 'Silakan hubungi admin untuk informasi lebih lanjut.'),
+            ])->onlyInput('email');
+        }
+
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 

@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\TopUp;
 use App\Models\TopUpOrder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -388,6 +389,43 @@ class AdminController extends Controller
     {
         $user = User::with('orders.product')->findOrFail($id);
         return view('admin.users.detail', compact('user'));
+    }
+
+    /**
+     * Ban a user
+     */
+    public function banUser(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        
+        // Cannot ban admin
+        if ($user->isAdmin()) {
+            return back()->with('error', 'Tidak dapat memban admin.');
+        }
+
+        // Cannot ban yourself
+        if ($user->id === Auth::id()) {
+            return back()->with('error', 'Tidak dapat memban diri sendiri.');
+        }
+
+        $request->validate([
+            'ban_reason' => 'nullable|string|max:500',
+        ]);
+
+        $user->ban($request->ban_reason);
+
+        return back()->with('success', 'User ' . $user->name . ' berhasil dibanned.');
+    }
+
+    /**
+     * Unban a user
+     */
+    public function unbanUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->unban();
+
+        return back()->with('success', 'User ' . $user->name . ' berhasil di-unbanned.');
     }
 
     // ==================== TOP UP MANAGEMENT ====================

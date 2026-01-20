@@ -107,6 +107,8 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     // Users
     Route::get('/users', [AdminController::class, 'users'])->name('users');
     Route::get('/users/{id}', [AdminController::class, 'userDetail'])->name('users.detail');
+    Route::post('/users/{id}/ban', [AdminController::class, 'banUser'])->name('users.ban');
+    Route::post('/users/{id}/unban', [AdminController::class, 'unbanUser'])->name('users.unban');
     
     // Admin List
     Route::get('/admin-list', [AdminController::class, 'adminList'])->name('admin-list');

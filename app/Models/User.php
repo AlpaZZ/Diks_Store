@@ -45,6 +45,9 @@ class User extends Authenticatable
         'nim',
         'avatar',
         'last_activity',
+        'is_banned',
+        'ban_reason',
+        'banned_at',
     ];
 
     /**
@@ -68,6 +71,8 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'last_activity' => 'datetime',
+            'is_banned' => 'boolean',
+            'banned_at' => 'datetime',
         ];
     }
 
@@ -89,6 +94,40 @@ class User extends Authenticatable
     public function isUser(): bool
     {
         return $this->role === 'user';
+    }
+
+    /**
+     * Check if user is banned
+     *
+     * @return bool
+     */
+    public function isBanned(): bool
+    {
+        return $this->is_banned === true;
+    }
+
+    /**
+     * Ban the user
+     */
+    public function ban(?string $reason = null): void
+    {
+        $this->update([
+            'is_banned' => true,
+            'ban_reason' => $reason,
+            'banned_at' => now(),
+        ]);
+    }
+
+    /**
+     * Unban the user
+     */
+    public function unban(): void
+    {
+        $this->update([
+            'is_banned' => false,
+            'ban_reason' => null,
+            'banned_at' => null,
+        ]);
     }
 
     /**
