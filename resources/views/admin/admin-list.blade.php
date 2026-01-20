@@ -45,7 +45,7 @@
                                   title="{{ $admin->isOnline() ? 'Online' : 'Offline' }}">
                             </span>
                         </div>
-                        <div class="flex-grow-1">
+                        <div class="grow">
                             <h5 class="mb-1">{{ $admin->name }}</h5>
                             <span class="badge {{ $admin->isOnline() ? 'bg-success' : 'bg-secondary' }}">
                                 <i class="bi bi-circle-fill me-1" style="font-size: 0.5rem;"></i>

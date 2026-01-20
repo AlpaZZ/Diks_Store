@@ -135,7 +135,7 @@
                          alt="{{ $product->name }}" 
                          class="rounded me-3" 
                          style="width: 50px; height: 50px; object-fit: cover;">
-                    <div class="flex-grow-1">
+                    <div class="grow">
                         <h6 class="mb-1">{{ Str::limit($product->name, 25) }}</h6>
                         <small class="text-primary fw-bold">{{ $product->formatted_price }}</small>
                     </div>
