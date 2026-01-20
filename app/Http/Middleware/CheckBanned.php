@@ -16,6 +16,11 @@ class CheckBanned
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Skip check for login/logout routes to prevent redirect loop
+        if ($request->routeIs('login') || $request->routeIs('logout') || $request->routeIs('admin.login')) {
+            return $next($request);
+        }
+        
         if (Auth::check() && Auth::user()->is_banned) {
             Auth::logout();
             $request->session()->invalidate();

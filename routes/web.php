@@ -18,6 +18,7 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 // ==================== GAME ROUTES (Combined Top Up & Account) ====================
 Route::get('/game', [GameController::class, 'index'])->name('game.index');
+Route::get('/game/history', function() { return redirect()->route('user.orders', ['tab' => 'topup']); });
 Route::get('/game/{slug}', [GameController::class, 'show'])->name('game.show');
 
 // Legacy routes - redirect to new game routes
@@ -46,7 +47,7 @@ Route::middleware('user')->prefix('topup')->name('topup.')->group(function () {
     Route::post('/order/{id}', [TopUpController::class, 'processOrder'])->name('processOrder');
     Route::get('/payment/{id}', [TopUpController::class, 'payment'])->name('payment');
     Route::post('/payment/{id}', [TopUpController::class, 'uploadPayment'])->name('uploadPayment');
-    Route::get('/history', [TopUpController::class, 'history'])->name('history');
+    Route::get('/history', function() { return redirect()->route('user.orders', ['tab' => 'topup']); })->name('history');
     Route::get('/detail/{id}', [TopUpController::class, 'detail'])->name('detail');
 });
 

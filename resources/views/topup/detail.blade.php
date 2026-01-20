@@ -10,7 +10,7 @@
                 <!-- Breadcrumb -->
                 <nav aria-label="breadcrumb" class="mb-4">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('topup.history') }}">Riwayat Top Up</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('user.orders', ['tab' => 'topup']) }}">Pesanan Saya</a></li>
                         <li class="breadcrumb-item active">{{ $order->order_number }}</li>
                     </ol>
                 </nav>

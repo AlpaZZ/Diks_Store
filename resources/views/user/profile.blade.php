@@ -22,10 +22,7 @@
                         <i class="bi bi-speedometer2 me-2"></i> Dashboard
                     </a>
                     <a href="{{ route('user.orders') }}" class="list-group-item list-group-item-action">
-                        <i class="bi bi-bag me-2"></i> Pesanan Akun
-                    </a>
-                    <a href="{{ route('topup.history') }}" class="list-group-item list-group-item-action">
-                        <i class="bi bi-gem me-2"></i> Riwayat Top Up
+                        <i class="bi bi-bag me-2"></i> Pesanan Saya
                     </a>
                     <a href="{{ route('user.profile') }}" class="list-group-item list-group-item-action active">
                         <i class="bi bi-person me-2"></i> Profil

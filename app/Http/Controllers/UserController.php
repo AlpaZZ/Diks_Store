@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\TopUpOrder;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,19 +37,28 @@ class UserController extends Controller
     }
 
     /**
-     * List user's orders
+     * List user's orders (combined account orders and top up orders)
      */
-    public function orders()
+    public function orders(Request $request)
     {
         /** @var User $user */
         $user = Auth::user();
         
-        $orders = $user->orders()
-            ->with('product')
+        $tab = $request->get('tab', 'account');
+        
+        // Account Orders
+        $accountOrders = $user->orders()
+            ->with('product.category')
             ->latest()
-            ->paginate(10);
+            ->paginate(10, ['*'], 'account_page');
 
-        return view('user.orders.index', compact('orders'));
+        // Top Up Orders
+        $topupOrders = TopUpOrder::with(['topup.category'])
+            ->where('user_id', $user->id)
+            ->latest()
+            ->paginate(10, ['*'], 'topup_page');
+
+        return view('user.orders.index', compact('accountOrders', 'topupOrders', 'tab'));
     }
 
     /**
