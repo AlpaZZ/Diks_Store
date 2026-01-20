@@ -11,8 +11,6 @@
 
 ---
 
-## ✨ Demo & Screenshot
-
 ### Halaman Utama
 - Homepage dengan katalog game
 - Detail game dengan paket top up & akun tersedia
