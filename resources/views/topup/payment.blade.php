@@ -55,7 +55,7 @@
                 <div class="card-body">
                     <!-- Product -->
                     <div class="d-flex mb-4">
-                        @if($order->topup->category->icon)
+                        @if($order->topup && $order->topup->category?->icon)
                         <img src="{{ asset('storage/' . $order->topup->category->icon) }}" 
                              alt="{{ $order->topup->category->name }}" 
                              class="rounded me-3" 
@@ -67,7 +67,8 @@
                         </div>
                         @endif
                         <div class="grow">
-                            <h5>{{ $order->topup->category->name }}</h5>
+                            <h5>{{ $order->topup?->category?->name ?? 'Paket Dihapus' }}</h5>
+                            @if($order->topup)
                             <p class="text-primary fw-bold mb-1">
                                 {{ number_format($order->topup->amount) }} 
                                 @if($order->topup->bonus_amount > 0)
@@ -75,6 +76,7 @@
                                 @endif
                                 {{ $order->topup->currency_name }}
                             </p>
+                            @endif
                             <p class="mb-0 small">
                                 <span class="badge bg-secondary">User ID: {{ $order->game_id }}</span>
                                 @if($order->game_server)
@@ -164,7 +166,7 @@
             <div class="card border-0 shadow-sm mb-4">
                 <div class="card-body">
                     <div class="alert alert-info mb-0">
-                        <i class="bi bi-hourglass-split"></i> Pembayaran Anda sedang diverifikasi. {{ $order->topup->currency_name }} akan dikirim dalam 1-5 menit setelah verifikasi.
+                        <i class="bi bi-hourglass-split"></i> Pembayaran Anda sedang diverifikasi. {{ $order->topup?->currency_name ?? 'Item' }} akan dikirim dalam 1-5 menit setelah verifikasi.
                     </div>
                     
                     @if($order->payment_proof)
@@ -190,7 +192,11 @@
                 <div class="card-body">
                     <div class="alert alert-success">
                         <i class="bi bi-gem"></i> <strong>Selamat!</strong> 
+                        @if($order->topup)
                         {{ number_format($order->topup->total_amount) }} {{ $order->topup->currency_name }} telah dikirim ke akun Anda.
+                        @else
+                        Top up telah berhasil dikirim ke akun Anda.
+                        @endif
                     </div>
                     @if($order->admin_notes)
                     <div class="bg-light p-3 rounded">

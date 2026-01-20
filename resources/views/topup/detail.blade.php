@@ -41,8 +41,9 @@
                                 </h6>
                             </div>
                             <div class="card-body">
+                                @if($order->topup)
                                 <div class="d-flex align-items-center mb-3">
-                                    @if($order->topup->category->icon)
+                                    @if($order->topup->category?->icon)
                                     <img src="{{ Storage::url($order->topup->category->icon) }}" 
                                          alt="{{ $order->topup->category->name }}" 
                                          class="rounded me-3" style="width: 60px; height: 60px; object-fit: cover;">
@@ -53,12 +54,18 @@
                                     </div>
                                     @endif
                                     <div>
-                                        <h5 class="mb-1 fw-bold">{{ $order->topup->category->name }}</h5>
+                                        <h5 class="mb-1 fw-bold">{{ $order->topup->category?->name ?? 'Kategori Dihapus' }}</h5>
                                         <p class="mb-0 text-primary fw-semibold">
                                             {{ number_format($order->topup->total_amount) }} {{ $order->topup->currency_name }}
                                         </p>
                                     </div>
                                 </div>
+                                @else
+                                <div class="alert alert-warning mb-3">
+                                    <i class="bi bi-exclamation-triangle me-1"></i>
+                                    Paket top up ini sudah tidak tersedia.
+                                </div>
+                                @endif
 
                                 <hr>
 
@@ -124,9 +131,9 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-2">
                                     <span class="text-muted">Produk</span>
-                                    <span>{{ number_format($order->topup->amount) }} {{ $order->topup->currency_name }}</span>
+                                    <span>{{ $order->topup ? number_format($order->topup->amount) . ' ' . $order->topup->currency_name : '-' }}</span>
                                 </div>
-                                @if($order->topup->bonus_amount > 0)
+                                @if($order->topup && $order->topup->bonus_amount > 0)
                                 <div class="d-flex justify-content-between mb-2">
                                     <span class="text-muted">Bonus</span>
                                     <span class="text-success">+{{ number_format($order->topup->bonus_amount) }}</span>
@@ -193,8 +200,10 @@
                                             <small class="text-muted">
                                                 @if($order->completed_at)
                                                 {{ $order->completed_at->format('d M Y, H:i') }}
-                                                @else
+                                                @elseif($order->topup)
                                                 {{ $order->topup->currency_name }} telah dikirim
+                                                @else
+                                                Pesanan selesai
                                                 @endif
                                             </small>
                                         </div>

@@ -67,16 +67,20 @@
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        @if($order->topup && $order->topup->category && $order->topup->category->icon)
+                                        @if($order->topup?->category?->icon)
                                         <img src="{{ asset('storage/' . $order->topup->category->icon) }}" 
                                              alt="{{ $order->topup->category->name }}" 
                                              class="rounded me-2" style="width: 30px; height: 30px; object-fit: cover;">
                                         @endif
-                                        <span>{{ $order->topup->category->name ?? 'N/A' }}</span>
+                                        <span>{{ $order->topup?->category?->name ?? 'Paket Dihapus' }}</span>
                                     </div>
                                 </td>
                                 <td>
-                                    {{ number_format($order->topup->total_amount ?? 0) }} {{ $order->topup->currency_name ?? '' }}
+                                    @if($order->topup)
+                                        {{ number_format($order->topup->total_amount ?? 0) }} {{ $order->topup->currency_name ?? '' }}
+                                    @else
+                                        <span class="text-muted">-</span>
+                                    @endif
                                 </td>
                                 <td>{{ $order->game_id }}</td>
                                 <td class="fw-semibold">{{ $order->formatted_total_price }}</td>
@@ -85,7 +89,7 @@
                                 </td>
                                 <td>{{ $order->created_at->format('d M Y H:i') }}</td>
                                 <td>
-                                    <a href="{{ route('topup.payment', $order->id) }}" class="btn btn-sm btn-outline-primary">
+                                    <a href="{{ route('topup.detail', $order->id) }}" class="btn btn-sm btn-outline-primary">
                                         <i class="bi bi-eye"></i>
                                     </a>
                                     @if($order->status == 'pending')

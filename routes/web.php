@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TopUpController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\ExportController;
 
 // ==================== PUBLIC ROUTES ====================
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -112,4 +113,18 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     
     // Admin List
     Route::get('/admin-list', [AdminController::class, 'adminList'])->name('admin-list');
+    
+    // Export Routes (PDF & Excel/CSV)
+    Route::prefix('export')->name('export.')->group(function () {
+        Route::get('/dashboard/pdf', [ExportController::class, 'dashboardPdf'])->name('dashboard.pdf');
+        Route::get('/dashboard/excel', [ExportController::class, 'dashboardExcel'])->name('dashboard.excel');
+        Route::get('/orders/pdf', [ExportController::class, 'ordersPdf'])->name('orders.pdf');
+        Route::get('/orders/excel', [ExportController::class, 'ordersExcel'])->name('orders.excel');
+        Route::get('/topup-orders/pdf', [ExportController::class, 'topupOrdersPdf'])->name('topup-orders.pdf');
+        Route::get('/topup-orders/excel', [ExportController::class, 'topupOrdersExcel'])->name('topup-orders.excel');
+        Route::get('/products/pdf', [ExportController::class, 'productsPdf'])->name('products.pdf');
+        Route::get('/products/excel', [ExportController::class, 'productsExcel'])->name('products.excel');
+        Route::get('/users/pdf', [ExportController::class, 'usersPdf'])->name('users.pdf');
+        Route::get('/users/excel', [ExportController::class, 'usersExcel'])->name('users.excel');
+    });
 });

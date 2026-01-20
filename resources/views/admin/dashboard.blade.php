@@ -178,4 +178,96 @@
         </div>
     </div>
 </div>
+
+<!-- Export Section -->
+<div class="row g-4 mt-2">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <h5 class="mb-3"><i class="bi bi-download"></i> Export Laporan</h5>
+                <div class="row g-3">
+                    <!-- Dashboard Report -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border rounded bg-light">
+                            <h6 class="mb-2"><i class="bi bi-speedometer2 me-2 text-primary"></i>Laporan Dashboard</h6>
+                            <p class="text-muted small mb-2">Export ringkasan statistik dashboard</p>
+                            <div class="d-flex gap-2">
+                                <a href="{{ route('admin.export.dashboard.pdf') }}" class="btn btn-sm btn-danger">
+                                    <i class="bi bi-file-pdf"></i> PDF
+                                </a>
+                                <a href="{{ route('admin.export.dashboard.excel') }}" class="btn btn-sm btn-success">
+                                    <i class="bi bi-file-excel"></i> Excel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Orders Report -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border rounded bg-light">
+                            <h6 class="mb-2"><i class="bi bi-bag me-2 text-info"></i>Laporan Pesanan Akun</h6>
+                            <p class="text-muted small mb-2">Export data pesanan jual beli akun</p>
+                            <div class="d-flex gap-2">
+                                <a href="{{ route('admin.export.orders.pdf') }}" class="btn btn-sm btn-danger">
+                                    <i class="bi bi-file-pdf"></i> PDF
+                                </a>
+                                <a href="{{ route('admin.export.orders.excel') }}" class="btn btn-sm btn-success">
+                                    <i class="bi bi-file-excel"></i> Excel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Top Up Orders Report -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border rounded bg-light">
+                            <h6 class="mb-2"><i class="bi bi-gem me-2 text-warning"></i>Laporan Pesanan Top Up</h6>
+                            <p class="text-muted small mb-2">Export data pesanan top up game</p>
+                            <div class="d-flex gap-2">
+                                <a href="{{ route('admin.export.topup-orders.pdf') }}" class="btn btn-sm btn-danger">
+                                    <i class="bi bi-file-pdf"></i> PDF
+                                </a>
+                                <a href="{{ route('admin.export.topup-orders.excel') }}" class="btn btn-sm btn-success">
+                                    <i class="bi bi-file-excel"></i> Excel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Products Report -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border rounded bg-light">
+                            <h6 class="mb-2"><i class="bi bi-box me-2 text-success"></i>Laporan Produk</h6>
+                            <p class="text-muted small mb-2">Export data semua produk</p>
+                            <div class="d-flex gap-2">
+                                <a href="{{ route('admin.export.products.pdf') }}" class="btn btn-sm btn-danger">
+                                    <i class="bi bi-file-pdf"></i> PDF
+                                </a>
+                                <a href="{{ route('admin.export.products.excel') }}" class="btn btn-sm btn-success">
+                                    <i class="bi bi-file-excel"></i> Excel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Users Report -->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border rounded bg-light">
+                            <h6 class="mb-2"><i class="bi bi-people me-2 text-danger"></i>Laporan Pengguna</h6>
+                            <p class="text-muted small mb-2">Export data semua pengguna</p>
+                            <div class="d-flex gap-2">
+                                <a href="{{ route('admin.export.users.pdf') }}" class="btn btn-sm btn-danger">
+                                    <i class="bi bi-file-pdf"></i> PDF
+                                </a>
+                                <a href="{{ route('admin.export.users.excel') }}" class="btn btn-sm btn-success">
+                                    <i class="bi bi-file-excel"></i> Excel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
