@@ -92,11 +92,7 @@ class TopUpController extends Controller
             ->where('user_id', Auth::id())
             ->findOrFail($id);
 
-        if ($order->status !== 'pending') {
-            return redirect()->route('topup.history')
-                ->with('info', 'Order ini sudah diproses.');
-        }
-
+        // Allow viewing payment page for all statuses
         return view('topup.payment', compact('order'));
     }
 
@@ -108,7 +104,7 @@ class TopUpController extends Controller
         $order = TopUpOrder::where('user_id', Auth::id())->findOrFail($id);
 
         if ($order->status !== 'pending') {
-            return redirect()->route('topup.history')
+            return redirect()->route('topup.payment', $order->id)
                 ->with('error', 'Order ini sudah diproses.');
         }
 
@@ -122,14 +118,14 @@ class TopUpController extends Controller
                 Storage::disk('public')->delete($order->payment_proof);
             }
 
-            $path = $request->file('payment_proof')->store('payment-proofs/topup', 'public');
+            $path = $request->file('payment_proof')->store('payment_proofs', 'public');
             $order->update([
                 'payment_proof' => $path,
                 'status' => 'processing',
             ]);
         }
 
-        return redirect()->route('topup.history')
+        return redirect()->route('topup.payment', $order->id)
             ->with('success', 'Bukti pembayaran berhasil diupload! Pesanan sedang diproses.');
     }
 
